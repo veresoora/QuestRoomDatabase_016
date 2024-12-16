@@ -32,7 +32,10 @@ import com.nadia.pertemuan8.ui.viewmodel.MahasiswaEvent
 import com.nadia.pertemuan8.ui.viewmodel.MahasiswaViewModel
 import com.nadia.pertemuan8.ui.viewmodel.MhsUIState
 import com.nadia.pertemuan8.ui.viewmodel.PenyediaViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 object DestinasiInsert : AlamatNavigasi{
     override val route: String = "insert_mhs"
@@ -96,8 +99,10 @@ fun InserMhsView(
             TopAppBar(
                 onBack = onBack,
                 showBackButton = true,
-                judul = "Tambah Mahasiswa"
+                judul = "Tambah Mahasiswa",
+                modifier = Modifier
             )
+
             // Isi Body
             InsertBodyMhs(
                 uiState = uiState,
@@ -106,9 +111,14 @@ fun InserMhsView(
                 },
                 onClick = {
                     coroutineScope.launch {
-                        viewModel.saveData() //simpn data
+                        if (viewModel.validateFields()){
+                            viewModel.saveData()
+                            delay(500)
+                            withContext(Dispatchers.Main) {
+                                onNavigate()
+                            }
+                        }
                     }
-                    onNavigate()
                 }
             )
         }
