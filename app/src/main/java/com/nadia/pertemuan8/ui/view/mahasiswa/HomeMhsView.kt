@@ -51,6 +51,10 @@ fun HomeMhsView(
     modifier: Modifier = Modifier
 ) {
     Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+            .padding(top = 18.dp),
         topBar = {
             TopAppBar(
                 judul = "Daftar Mahasiswa",
@@ -152,7 +156,7 @@ fun ListMahasiswa(
     onClick: (String) -> Unit = { }
 ) {
     LazyColumn(
-        modifier = Modifier
+        modifier = Modifier.padding(top = 50.dp)
     ) {
         items(
             items = listMhs,

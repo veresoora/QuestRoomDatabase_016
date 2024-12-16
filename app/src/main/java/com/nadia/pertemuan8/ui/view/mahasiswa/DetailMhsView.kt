@@ -48,6 +48,10 @@ fun DetailMhsView (
     onDeleteClick: () -> Unit = { }
 ){
     Scaffold (
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+            .padding(top = 18.dp),
         topBar = {
             TopAppBar(
                 judul = "Detail Mahasiswa",

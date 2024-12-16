@@ -267,14 +267,14 @@ fun FormMahasiswa(
             label = {
                 Text("angkatan")
             },
-            isError = errorState.alamat != null,
+            isError = errorState.angkatan != null,
             placeholder = {
-                Text("Masukkan Alamat")
+                Text("Masukkan Angkatan")
             }
         )
 
         Text(
-            text = errorState.alamat ?: "",
+            text = errorState.angkatan ?: "",
             color = Color.Red
         )
     }
